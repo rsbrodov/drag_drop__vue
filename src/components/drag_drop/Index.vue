@@ -8,8 +8,7 @@
                             <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item) in clonedItems" :key="uuid(item)" >
                                 <p class="pl-2 pt-3 text-secondary"><i :class="item.class"></i> {{item.title}}</p>
                                 <div class="button-group">
-<!--                                    <button class="btn btn-outline-secondary mr-2" @click="EditItem(item.uid)"><i class="fa fa-pencil fa-sm"></i></button>-->
-<!--                                    <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index)"><i class="fa fa-trash fa-sm"></i></button>-->
+
                                 </div>
                             </div>
                         </draggable>
@@ -17,12 +16,6 @@
                 </div>
                 <div class="col-3">
                     <div class="d-flex flex-column">
-                        <div class="p-2"><a href="" class="btn btn-primary form-control text-left"><i
-                                class="fa fa-save fa-lg" aria-hidden="true"></i> Сохранить черновик</a></div>
-                        <div class="p-2"><a href="" class="btn btn-primary form-control text-left"><i
-                                class="fa fa-check-circle fa-lg" aria-hidden="true"></i> Публикация типа</a></div>
-                        <div class="p-2"><a href="" class="btn btn-primary form-control text-left"><i
-                                class="fa fa-trash fa-lg" aria-hidden="true"></i> Удалить тип</a></div>
                         <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left"><i
                                 class="fa fa-bars fa-lg" aria-hidden="true"></i> Добавить строку</a></div>
                         <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left"><i
