@@ -6,7 +6,7 @@
                     <div class="left-block__draggable-layout mt-2">
                         <draggable class="left-block__draggable-layout__draggable-parent mt-3 mb-3" v-model="clonedItems" :options="clonedItemOptions">
                             <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item) in clonedItems" :key="uuid(item)" >
-                                <p class="pl-2 pt-3 text-secondary"><i :class="item.class"></i> {{item.title}}</p>
+                                <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
 
                                 </div>
@@ -16,21 +16,20 @@
                 </div>
                 <div class="col-3">
                     <div class="d-flex flex-column">
-                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left"><i
-                                class="fa fa-bars fa-lg" aria-hidden="true"></i> Добавить строку</a></div>
-                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left"><i
-                                class="fa fa-columns fa-lg" aria-hidden="true"></i> Добавить колонку</a></div>
-
+                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
+                            <b-icon icon="layout-text-sidebar" />Добавить строку</a></div>
+                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
+                            <b-icon icon="columns" />Добавить колонку</a></div>
 
                         <draggable
-                                v-model="availableItems"
-                                :options="availableItemOptions"
-                                :clone="handleClone"
-                                @end="moveAction"
+                            v-model="availableItems"
+                            :options="availableItemOptions"
+                            :clone="handleClone"
+                            @end="moveAction"
                         >
                             <div class="p-2" v-for="(item,index) in availableItems" :key="index">
                                 <a class="btn btn-outline-secondary form-control text-left">
-                                    <i :class="item.class" aria-hidden="true"></i> {{item.name}}
+                                    <b-icon :icon="item.class" />{{item.name}}
                                 </a>
                             </div>
                         </draggable>
@@ -53,32 +52,32 @@
                 ],
                 availableItems: [
                     {
-                        class: "fa fa-code fa-lg",
+                        class: "code",
                         name: "HTML редактор",
                         type: "textarea",
                     },
                     {
-                        class: "fa fa-caret-down fa-lg",
+                        class: "caret-down",
                         name: "Выпадающий список",
                         type: "select",
                     },
                     {
-                        class: "fa fa-calendar fa-lg",
+                        class: "calendar",
                         name: "Дата/Время",
                         type: "datetime",
                     },
                     {
-                        class: "fa fa-image fa-lg",
+                        class: "image",
                         name: "Изображение",
                         type: "file",
                     },
                     {
-                        class: "fa fa-list fa-lg",
+                        class: "list",
                         name: "Радио-группа",
                         type: "radio",
                     },
                     {
-                        class: "fa fa-text-height fa-lg",
+                        class: "chat-text",
                         name: "Текстовое поле",
                         type: "text",
                     },
