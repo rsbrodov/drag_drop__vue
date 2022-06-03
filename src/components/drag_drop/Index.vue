@@ -1,5 +1,16 @@
 <template>
     <div id="app">
+        <!-- Modal -->
+        <div class="modal fade" id="createElement" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <Viewmodal
+                        @close-modal="closeModal('createElement', $event)"
+                        :copy="copy"
+                        :clonedItems="clonedItems"
+                />
+            </div>
+        </div>
+        <!--End Modal -->
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-9 left-block">
@@ -8,7 +19,7 @@
                             <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item) in clonedItems" :key="uuid(item)" >
                                 <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
-
+                                    <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index)"><b-icon icon="trash" /></button>
                                 </div>
                             </div>
                         </draggable>
@@ -42,9 +53,11 @@
 
 <script>
     import draggable from 'vuedraggable'
+    import Viewmodal from "./Viewmodal";
+    import $ from 'jquery'
     export default {
         name: "Index.vue",
-        components: {draggable},
+        components: {draggable, Viewmodal},
         data() {
             return {
                 copy: null,
@@ -112,24 +125,22 @@
             moveAction() {
                 this.openModal('createElement');
             },
-            deleteItem(index, indexing) {
-                this.clonedItems[index].splice(indexing, 1);
+            deleteItem(index) {
+                this.clonedItems.splice(index, 1);
             },
             uuid(e) {
                 if (e.uid) return e.uid;
-                const key = Math.random()
-                    .toString(16)
-                    .slice(2);
+                const key = Math.random().toString(16).slice(2);
                 this.$set(e, "uid", key);
                 return e.uid;
             },
-            /*closeModal(id) {
+            closeModal(id) {
                 $("#"+id).modal("hide");
             },
             openModal(id) {
                 $('#'+id).modal('show');
             },
-            EditItem(uid) {
+            /*EditItem(uid) {
                 this.copy = uid;
                 this.openModal('editElement');
             },*/
