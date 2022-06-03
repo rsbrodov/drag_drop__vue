@@ -1,6 +1,16 @@
 <template>
     <div id="app">
-        
+        <!-- Modal -->
+        <div class="modal fade" id="createElement" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <Viewmodal
+                        @close-modal="closeModal('createElement', $event)"
+                        :copy="copy"
+                        :clonedItems="clonedItems"
+                />
+            </div>
+        </div>
+        <!--End Modal -->
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-9 left-block">
@@ -43,9 +53,11 @@
 
 <script>
     import draggable from 'vuedraggable'
+    import Viewmodal from "./Viewmodal";
+    import $ from 'jquery'
     export default {
         name: "Index.vue",
-        components: {draggable},
+        components: {draggable, Viewmodal},
         data() {
             return {
                 copy: null,
@@ -118,19 +130,17 @@
             },
             uuid(e) {
                 if (e.uid) return e.uid;
-                const key = Math.random()
-                    .toString(16)
-                    .slice(2);
+                const key = Math.random().toString(16).slice(2);
                 this.$set(e, "uid", key);
                 return e.uid;
             },
-            /*closeModal(id) {
+            closeModal(id) {
                 $("#"+id).modal("hide");
             },
             openModal(id) {
                 $('#'+id).modal('show');
             },
-            EditItem(uid) {
+            /*EditItem(uid) {
                 this.copy = uid;
                 this.openModal('editElement');
             },*/
