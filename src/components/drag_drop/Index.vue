@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-9 left-block">
@@ -8,7 +9,7 @@
                             <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item) in clonedItems" :key="uuid(item)" >
                                 <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
-
+                                    <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index)"><b-icon icon="trash" /></button>
                                 </div>
                             </div>
                         </draggable>
@@ -112,8 +113,8 @@
             moveAction() {
                 this.openModal('createElement');
             },
-            deleteItem(index, indexing) {
-                this.clonedItems[index].splice(indexing, 1);
+            deleteItem(index) {
+                this.clonedItems.splice(index, 1);
             },
             uuid(e) {
                 if (e.uid) return e.uid;
