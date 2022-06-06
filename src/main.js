@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './assets/styles.scss'
 import router from './router'
 import Sortable from 'vue-sortable'
 //import JQuery from 'jquery'

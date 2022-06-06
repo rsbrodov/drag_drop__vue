@@ -48,6 +48,7 @@
                 </div>
             </div>
         </div>
+        <button class="btn2">123</button>
     </div>
 </template>
 
@@ -148,7 +149,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    .btn2{
+        color:$color!important;
+    }
     .left-block {
         background-color: #d6d6d6;
     }
