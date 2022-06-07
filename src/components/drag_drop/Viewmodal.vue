@@ -1,21 +1,15 @@
 <template>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Информация о поле</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" @click="$emit('close-modal', 'createElement')">&times;</span>
-            </button>
-        </div>
+    <div>
         <form @submit.prevent="saveDropElement()">
             <div class="modal-body">
                 <div class="row mb-3">
                     <div class="block col-6">
                         <label for="title"><b>Наименование:</b></label>
-                        <input autofocus autocomplete="off" id="title" class="form-control" type="text" v-model="vv.title">
+                        <input autofocus autocomplete="off" id="title" class="form-control" type="text">
                     </div>
                     <div class="block col-6">
                         <label for="required"><b>Обязательно к заполнению:</b></label>
-                        <select id="required" class="form-control" v-model="vv.required">
+                        <select id="required" class="form-control">
                             <option value="1">Да</option>
                             <option value="0">Нет</option>
                         </select>
