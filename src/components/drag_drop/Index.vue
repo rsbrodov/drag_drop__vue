@@ -1,16 +1,15 @@
 <template>
     <div id="app">
         <!-- Modal -->
-        <div class="modal fade" id="createElement" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <Viewmodal
-                        @close-modal="closeModal('createElement', $event)"
-                        :copy="copy"
-                        :clonedItems="clonedItems"
-                />
-            </div>
-        </div>
+        <b-modal id="createElement" title="Добавление элемента" hide-footer>
+            <Viewmodal
+                @close-modal="closeModal('createElement')"
+                :copy="copy"
+                :clonedItems="clonedItems"
+            />
+        </b-modal>
         <!--End Modal -->
+
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-9 left-block">
@@ -31,7 +30,6 @@
                             <b-icon icon="layout-text-sidebar" />Добавить строку</a></div>
                         <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
                             <b-icon icon="columns" />Добавить колонку</a></div>
-
                         <draggable
                             v-model="availableItems"
                             :options="availableItemOptions"
@@ -48,14 +46,13 @@
                 </div>
             </div>
         </div>
-        <button class="btn2">123</button>
     </div>
 </template>
 
 <script>
+    import $ from 'jquery'
     import draggable from 'vuedraggable'
     import Viewmodal from "./Viewmodal";
-    import $ from 'jquery'
     export default {
         name: "Index.vue",
         components: {draggable, Viewmodal},
@@ -124,7 +121,7 @@
                 return cloneMe;
             },
             moveAction() {
-                this.openModal('createElement');
+                this.$bvModal.show('createElement')
             },
             deleteItem(index) {
                 this.clonedItems.splice(index, 1);
@@ -136,15 +133,18 @@
                 return e.uid;
             },
             closeModal(id) {
-                $("#"+id).modal("hide");
+                this.$bvModal.hide(id)
             },
             openModal(id) {
-                $('#'+id).modal('show');
+                this.$bvModal.show(id)
             },
             /*EditItem(uid) {
                 this.copy = uid;
                 this.openModal('editElement');
             },*/
+            addMyClass(){
+                $('.btn2').addClass('btn btn-danger')
+            }
         },
     }
 </script>
