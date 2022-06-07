@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!-- Modal -->
-        <b-modal id="createElement" title="Добавление элемента" hide-footer>
+        <b-modal id="createElement" title="Добавление элемента" hide-footer size="lg">
             <Viewmodal
                 @close-modal="closeModal('createElement')"
                 :copy="copy"
@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-9 left-block">
-                    <div class="left-block__draggable-layout mt-2">
-                        <draggable class="left-block__draggable-layout__draggable-parent mt-3 mb-3" v-model="clonedItems" :options="clonedItemOptions">
-                            <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item) in clonedItems" :key="uuid(item)" >
+                    <div class="left-block__draggable-layout mt-2" v-for="(mas, index) in clonedItems" :key="index">
+                        <draggable class="left-block__draggable-layout__draggable-parent mt-3 mb-3" v-model="clonedItems[index]" :options="clonedItemOptions">
+                            <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item, indexing) in mas" :key="uuid(item)"  >
                                 <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
-                                    <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index)"><b-icon icon="trash" /></button>
+                                    <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index, indexing)"><b-icon icon="trash" /></button>
                                 </div>
                             </div>
                         </draggable>
@@ -26,8 +26,8 @@
                 </div>
                 <div class="col-3">
                     <div class="d-flex flex-column">
-                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
-                            <b-icon icon="layout-text-sidebar" />Добавить строку</a></div>
+                        <div class="p-2"><button @click="pushRow()" class="btn btn-outline-secondary form-control text-left">
+                            <b-icon icon="layout-text-sidebar" />Добавить строку</button></div>
                         <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
                             <b-icon icon="columns" />Добавить колонку</a></div>
                         <draggable
@@ -60,6 +60,8 @@
             return {
                 copy: null,
                 clonedItems: [
+                    [
+                    ]
                 ],
                 availableItems: [
                     {
@@ -144,7 +146,11 @@
             },*/
             addMyClass(){
                 $('.btn2').addClass('btn btn-danger')
-            }
+            },
+            pushRow() {
+                let dop_array = [];
+                this.clonedItems.push(dop_array);
+            },
         },
     }
 </script>
