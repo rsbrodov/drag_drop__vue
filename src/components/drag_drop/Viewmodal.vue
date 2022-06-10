@@ -5,11 +5,11 @@
                 <div class="row mb-3">
                     <div class="block col-6">
                         <label for="title"><b>Наименование:</b></label>
-                        <input autofocus autocomplete="off" id="title" class="form-control" type="text">
+                        <input autofocus autocomplete="off" id="title" class="form-control" type="text" v-model="vv.title">
                     </div>
                     <div class="block col-6">
                         <label for="required"><b>Обязательно к заполнению:</b></label>
-                        <select id="required" class="form-control">
+                        <select id="required" class="form-control" v-model="vv.required">
                             <option value="1">Да</option>
                             <option value="0">Нет</option>
                         </select>
