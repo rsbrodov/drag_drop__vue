@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import DragDrop from '../components/drag_drop/Index'
+import Start from "../components/drag_drop/Start";
+import Maket from "../components/drag_drop/Maket";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/about',
     name: 'About',
@@ -20,6 +16,16 @@ const routes = [
     path: '/drag-drop',
     name: 'DragDrop',
     component: DragDrop
+  },
+  {
+    path: '/',
+    name: 'Start',
+    component: Start
+  },
+  {
+    path: '/maket',
+    name: 'Maket',
+    component: Maket
   },
 ];
 

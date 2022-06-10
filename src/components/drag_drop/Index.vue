@@ -22,8 +22,8 @@
         <!--End Modal -->
 
         <div class="my-container">
-            <div class="row ">
-                <div class="col-9 left-block">
+            <div class="blocks">
+                <div class="col-8 left-block">
                     <div class="left-block__draggable-layout" v-for="(mas, index) in clonedItems" :key="index"><!--Перебор строк-->
                         <b-icon class="btn-delete" @click="deleteRow(index)" icon="trash" />
                         <draggable class="left-block__draggable-layout__draggable-parent" v-model="clonedItems[index]" :options="clonedItemOptions">
@@ -37,19 +37,21 @@
                         </draggable>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-3 right-block">
                     <div class="d-flex flex-column">
-                        <div class="p-2"><button @click="pushRow()" class="btn btn-outline-secondary form-control text-left">
-                            <b-icon icon="layout-text-sidebar" />Добавить строку</button></div>
-                        <div class="p-2"><a href="" class="btn btn-outline-secondary form-control text-left">
-                            <b-icon icon="columns" />Добавить колонку</a></div>
+                        <div class="p-2 add-row-button"><button @click="pushRow()" class="btn btn-outline-primary form-control text-left">
+                            <b-icon icon="layout-text-sidebar" />Добавить строку</button>
+                        </div>
+                        <div class="p-2 add-row-button"><button class="btn btn-outline-primary form-control text-left" @click="goNext()">
+                            <b-icon icon="save"/>Сохранить и перейти к макету</button>
+                        </div>
                         <draggable
                             v-model="availableItems"
                             :options="availableItemOptions"
                             :clone="handleClone"
                             @end="moveAction"
                         >
-                            <div class="p-2" v-for="(item,index) in availableItems" :key="index">
+                            <div class="drab-button-el p-2" v-for="(item,index) in availableItems" :key="index">
                                 <a class="btn btn-outline-secondary form-control text-left">
                                     <b-icon :icon="item.class" />{{item.name}}
                                 </a>
@@ -171,16 +173,28 @@
                 let dop_array = [];
                 this.clonedItems.push(dop_array);
             },
+            goNext(){
+                this.$router.push({name: 'Maket', params: { clonedItems: this.clonedItems}});
+            }
         },
     }
 </script>
 
 <style lang="scss">
+    .blocks{
+        display: flex;
+        justify-content: space-around;
+    }
     .btn2{
         color:$color!important;
     }
     .left-block {
         background-color: #d6d6d6;
+        border-radius: 5px;
+    }
+    .right-block {
+        background-color: #ebf2fc;
+        border-radius: 5px;
     }
     .left-block__draggable-layout {
         background-color: white;
@@ -189,6 +203,7 @@
         text-align: right;
         padding-bottom: 10px;
         margin-top:20px;
+        border-radius: 5px;
     }
 
     .left-block__draggable-layout__draggable-parent {
@@ -224,5 +239,8 @@
     }
     i:hover {
         cursor: pointer;
+    }
+    .drab-button-el > a{
+        cursor: grabbing;
     }
 </style>
