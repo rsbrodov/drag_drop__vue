@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <FlashMessage :position="'right bottom'" style='z-index:20001;'/>
         <!-- Modal -->
         <b-modal id="createElement" title="Добавление элемента" hide-footer size="lg">
             <Viewmodal
@@ -10,14 +11,26 @@
         </b-modal>
         <!--End Modal -->
 
-        <div class="container-fluid">
+        <!-- Modal -->
+        <b-modal id="editElement" title="Редактирование элемента" hide-footer size="lg">
+            <Viewmodal
+                @close-modal="closeModal('createElement')"
+                :copy="copy"
+                :clonedItems="clonedItems"
+            />
+        </b-modal>
+        <!--End Modal -->
+
+        <div class="my-container">
             <div class="row ">
                 <div class="col-9 left-block">
-                    <div class="left-block__draggable-layout mt-2" v-for="(mas, index) in clonedItems" :key="index">
-                        <draggable class="left-block__draggable-layout__draggable-parent mt-3 mb-3" v-model="clonedItems[index]" :options="clonedItemOptions">
-                            <div class="clickable left-block__draggable-layout__draggable-parent__item mt-2 mb-2" v-for="(item, indexing) in mas" :key="uuid(item)"  >
+                    <div class="left-block__draggable-layout" v-for="(mas, index) in clonedItems" :key="index"><!--Перебор строк-->
+                        <b-icon class="btn-delete" @click="deleteRow(index)" icon="trash" />
+                        <draggable class="left-block__draggable-layout__draggable-parent" v-model="clonedItems[index]" :options="clonedItemOptions">
+                            <div class="clickable left-block__draggable-layout__draggable-parent__item" v-for="(item, indexing) in mas" :key="uuid(item)"  >
                                 <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
+                                    <button class="btn btn-outline-secondary mr-2" @click="EditItem(item.uid)"><b-icon icon="pencil" /></button>
                                     <button class="btn btn-outline-secondary mr-2" @click="deleteItem(index, indexing)"><b-icon icon="trash" /></button>
                                 </div>
                             </div>
@@ -125,8 +138,18 @@
             moveAction() {
                 this.$bvModal.show('createElement')
             },
-            deleteItem(index) {
-                this.clonedItems.splice(index, 1);
+            deleteItem(index, indexing) {
+                this.clonedItems[index].splice(indexing, 1);
+            },
+            deleteRow(index) {
+                if (this.clonedItems.length > 1){
+                    this.clonedItems.splice(index, 1);
+                }else{
+                    this.flashMessage.error({
+                        message: 'Нельзя удалить все блоки',
+                        time: 3000,
+                    });
+                }
             },
             uuid(e) {
                 if (e.uid) return e.uid;
@@ -137,13 +160,10 @@
             closeModal(id) {
                 this.$bvModal.hide(id)
             },
-            openModal(id) {
-                this.$bvModal.show(id)
-            },
-            /*EditItem(uid) {
+            EditItem(uid) {
                 this.copy = uid;
-                this.openModal('editElement');
-            },*/
+                this.$bvModal.show('editElement')
+            },
             addMyClass(){
                 $('.btn2').addClass('btn btn-danger')
             },
@@ -164,23 +184,28 @@
     }
     .left-block__draggable-layout {
         background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 80px;
+        min-height: 110px;
+        max-height: 11000px;
+        text-align: right;
+        padding-bottom: 10px;
+        margin-top:20px;
     }
+
     .left-block__draggable-layout__draggable-parent {
         background-color: #c4c4c4;
         border-radius: 5px;
         min-height: 60px;
-        width: 98%;
+        width: 96%;
+        margin:0 auto;
+        padding-bottom: 10px;
+        padding-top: 10px;
     }
     .left-block__draggable-layout__draggable-parent__item {
         background-color: white;
         width: 98%;
         border-radius: 5px;
-        min-height: 40px;
-        margin: 0 auto;
+        height: 45px;
+        margin: 5px auto;
         cursor: grab;
         display: flex;
         justify-content: space-between;
@@ -196,5 +221,8 @@
     .left-block__draggable-layout__draggable-parent__item > p {
         color: black;
         font-size: 18px;
+    }
+    i:hover {
+        cursor: pointer;
     }
 </style>

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
+    "@smartweb/vue-flash-message": "^0.6.10",
     "bootstrap": "^4.6.1",
     "bootstrap-icons-vue": "^1.8.1",
     "bootstrap-vue": "^2.22.0",

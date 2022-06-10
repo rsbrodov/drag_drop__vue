@@ -1,1 +1,5 @@
 @import './variables.scss';
+.my-container{
+  width: $container_length;
+  margin:0 auto;
+}
