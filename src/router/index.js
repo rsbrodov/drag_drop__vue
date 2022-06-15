@@ -16,7 +16,10 @@ const routes = [
   {
     path: '/drag-drop',
     name: 'DragDrop',
-    component: DragDrop
+    component: DragDrop,
+    meta: {
+      layout: 'Default'
+    }
   },
   {
     path: '/home',
@@ -26,12 +29,18 @@ const routes = [
   {
     path: '/',
     name: 'Start',
-    component: Start
+    component: Start,
+    meta: {
+      layout: 'Default'
+    }
   },
   {
     path: '/maket',
     name: 'Maket',
-    component: Maket
+    component: Maket,
+    meta: {
+      layout: 'Default'
+    }
   },
 ];
 
