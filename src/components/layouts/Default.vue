@@ -5,7 +5,6 @@
                 <a class="navbar-brand logo-image"><img src="@/assets/images/logo.svg" alt="alternative"></a>
             </div>
         </nav>
-
     </div>
 </template>
 

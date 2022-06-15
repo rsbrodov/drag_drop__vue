@@ -21,7 +21,7 @@
         </b-modal>
         <!--End Modal -->
 
-        <div class="my-container">
+        <div class="my-container mt-5">
             <div class="blocks">
                 <div class="col-8 left-block">
                     <div class="left-block__draggable-layout" v-for="(mas, index) in clonedItems" :key="index"><!--Перебор строк-->
@@ -103,6 +103,11 @@
                         class: "list",
                         name: "Радио-группа",
                         type: "radio",
+                    },
+                    {
+                        class: "card-checklist",
+                        name: "Флажок",
+                        type: "checkbox",
                     },
                     {
                         class: "chat-text",
