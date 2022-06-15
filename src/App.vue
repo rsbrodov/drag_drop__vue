@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Start</router-link> |
-      <router-link to="/drag-drop">Drag & Drop</router-link>
+      <component :is="layout"/>
     </div>
     <router-view/>
   </div>
 </template>
-
+<script>
+  export default {
+    computed: {
+      layout() {
+        const layoutName = this.$route.meta.layout || 'Default' ;
+        return () => import('./components/layouts/'+layoutName+'.vue')
+      }
+    }
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
