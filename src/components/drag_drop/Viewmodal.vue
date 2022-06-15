@@ -21,13 +21,13 @@
                         <label for="name"><b>Тип поля:</b></label>
                         <input autocomplete="off" id="name" class="form-control" type="text" v-model="vv.name" disabled="true">
                     </div>
-                    <div class="block col-6" v-if="vv.type == 'select' || vv.type == 'radio' || vv.type == 'checkbox'">
-                        <label for="dictionary_id"><b>Справочник:</b></label>
+                    <div class="block col-6" v-if="vv.type == 'text'">
+                        <label for="dictionary_id"><b>Тип данных:</b></label>
                         <select id="dictionary_id" class="form-control"
                                 v-model="vv.dictionary_id">
-                            <option v-for="(dic, index) in Dictionary"
-                                    :key="index"
-                                    :value="dic.id"
+                            <option v-for="dic in Dictionary"
+                                    :key="dic.name"
+                                    :value="dic.type"
                             >
                                 {{dic.name}}
                             </option>
@@ -53,13 +53,31 @@
         props: ['copy', 'clonedItems'],
         data() {
             return {
+                Dictionary: [
+                    {
+                        type: 'int',
+                        name: 'Целочисленный'
+                    },
+                    {
+                        type: 'varchar',
+                        name: 'Текст'
+                    },
+                    {
+                        type: 'float',
+                        name: 'Нецелое число'
+                    },
+                    {
+                        type: 'boolean',
+                        name: 'Булеан'
+                    },
+
+                ],
             }
         },
         computed:{
             vv(){
                 let find;
-                let copy = this.copy;//он не хочет читать переменную, нужно ее таким образом пробрасывать чтоб он видил ее в фориче ЖЕСТЬ
-                //return find;
+                let copy = this.copy;
                 $.each(this.clonedItems,function(index,clonedItem) {
                     $.each(clonedItem,function(index_item,item) {
                         if(item.uid === copy){

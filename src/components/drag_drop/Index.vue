@@ -83,31 +83,37 @@
                         class: "code",
                         name: "HTML редактор",
                         type: "textarea",
+                        dictionary_id: 'text'
                     },
                     {
                         class: "caret-down",
                         name: "Выпадающий список",
                         type: "select",
+                        dictionary_id: 'text'
                     },
                     {
                         class: "calendar",
                         name: "Дата/Время",
                         type: "datetime",
+                        dictionary_id: 'datetime'
                     },
                     {
                         class: "image",
                         name: "Изображение",
                         type: "file",
+                        dictionary_id: 'text'
                     },
                     {
                         class: "list",
                         name: "Радио-группа",
                         type: "radio",
+                        dictionary_id: 'boolean'
                     },
                     {
                         class: "card-checklist",
                         name: "Флажок",
                         type: "checkbox",
+                        dictionary_id: 'boolean'
                     },
                     {
                         class: "chat-text",
@@ -133,7 +139,7 @@
                 let cloneMe = JSON.parse(JSON.stringify(item));
                 this.$set(cloneMe, 'title', '');
                 this.$set(cloneMe, 'required', '');
-                if(cloneMe.type == 'select' || cloneMe.type == 'radio'){
+                if(cloneMe.type == 'text'){
                     this.$set(cloneMe, 'dictionary_id', null);
                 }
                 //делаем ключик в момент клонирования
@@ -194,7 +200,7 @@
         color:$color!important;
     }
     .left-block {
-        background-color: #d6d6d6;
+        background-color: #ff7595;
         border-radius: 5px;
     }
     .right-block {
