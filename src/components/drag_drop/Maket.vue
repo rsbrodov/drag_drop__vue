@@ -46,7 +46,20 @@
                </tr>
                </thead>
                <tbody>
-
+                  <tr>
+                     <td>id</td>
+                     <td>int</td>
+                     <td>11</td>
+                     <td>Нет</td>
+                     <td></td>
+                  </tr>
+                  <tr v-for="(element, index) in vv" :key="index">
+                     <td>{{element.uid}}</td>
+                     <td>{{element.dictionary_id}}</td>
+                     <td>Размер</td>
+                     <td>{{element.required | status_null}}</td>
+                     <td>{{element.title}}</td>
+                  </tr>
                </tbody>
                </table>
          </div>
@@ -56,8 +69,31 @@
 </template>
 
 <script>
+    import $ from "jquery";
+
     export default {
-        name: "Maket"
+       name: "Maket",
+       computed:{
+          vv(){
+             var find = [];
+             $.each(this.$route.params.clonedItems,function(index,clonedItem) {
+                $.each(clonedItem,function(index_item,item) {
+                   find.push(item);
+                });
+             });
+             return find;
+          }
+       },
+       filters: {
+          status_null: function (status) {
+             if (status == 0) {
+                return "Нет";
+             }
+             else {
+                return "Да";
+             }
+          },
+       }
     }
 </script>
 
