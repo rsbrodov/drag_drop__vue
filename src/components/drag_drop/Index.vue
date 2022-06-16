@@ -89,7 +89,7 @@
                         class: "caret-down",
                         name: "Выпадающий список",
                         type: "select",
-                        dictionary_id: 'text'
+                        dictionary_id: 'varchar'
                     },
                     {
                         class: "calendar",
@@ -101,7 +101,7 @@
                         class: "image",
                         name: "Изображение",
                         type: "file",
-                        dictionary_id: 'text'
+                        dictionary_id: 'varchar'
                     },
                     {
                         class: "list",

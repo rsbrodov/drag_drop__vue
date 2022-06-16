@@ -48,32 +48,11 @@
 
 <script>
     import $ from 'jquery'
+    import mixin from "../../mixins/myMixin";
     export default {
         name: "Viewmodal",
+        mixins: [mixin],
         props: ['copy', 'clonedItems'],
-        data() {
-            return {
-                Dictionary: [
-                    {
-                        type: 'int',
-                        name: 'Целочисленный'
-                    },
-                    {
-                        type: 'varchar',
-                        name: 'Текст'
-                    },
-                    {
-                        type: 'float',
-                        name: 'Нецелое число'
-                    },
-                    {
-                        type: 'boolean',
-                        name: 'Булеан'
-                    },
-
-                ],
-            }
-        },
         computed:{
             vv(){
                 let find;
