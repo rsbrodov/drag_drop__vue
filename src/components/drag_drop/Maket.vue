@@ -24,9 +24,17 @@
                      </div>
                      <div v-if="element.type == 'radio' || element.type == 'checkbox'">
                         <label :for="element.uid"><b-icon :icon="element.class"/><b> {{element.title}}:</b></label><br>
-                        <input :type="element.type" :id="element.uid" value=""> Пункт1 <br>
-                        <input :type="element.type" :id="element.uid" value=""> Пункт2 <br>
-                        <input :type="element.type" :id="element.uid" value=""> Пункт3 <br>
+                        <div class="checkbox-radio">
+                           <div class="checkbox-radio-element">
+                              <input :type="element.type" :id="element.uid" value=""> Пункт 1
+                           </div>
+                           <div class="checkbox-radio-element">
+                              <input :type="element.type" :id="element.uid" value=""> Пункт 2
+                           </div>
+                           <div class="checkbox-radio-element">
+                              <input :type="element.type" :id="element.uid" value=""> Пункт 3
+                           </div>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -56,7 +64,7 @@
                   <tr v-for="(element, index) in vv" :key="index">
                      <td>{{element.uid}}</td>
                      <td>{{element.dictionary_id}}</td>
-                     <td>Размер</td>
+                     <td>{{element.dictionary_id | get_size}}</td>
                      <td>{{element.required | status_null}}</td>
                      <td>{{element.title}}</td>
                   </tr>
@@ -64,15 +72,15 @@
                </table>
          </div>
       </div>
-
    </div>
 </template>
 
 <script>
     import $ from "jquery";
-
+    import mixin from "../../mixins/myMixin";
     export default {
        name: "Maket",
+       mixins: [mixin],
        computed:{
           vv(){
              var find = [];
@@ -93,6 +101,7 @@
                 return "Да";
              }
           },
+
        }
     }
 </script>
@@ -118,4 +127,15 @@ label{
 .razdel > p{
    font-size: 35px;
 }
+   .checkbox-radio{
+      background-color: white;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      height: 35px;
+   }
+   .checkbox-radio-element{
+      margin: 0 25px;
+   }
 </style>
