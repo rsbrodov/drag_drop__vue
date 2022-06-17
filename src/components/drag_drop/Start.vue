@@ -10,7 +10,7 @@
                             <h1>Конструктор базы данных Вашего приложения</h1>
                             <p class="p-large p-heading">Начните формировать информационную архитектуру Вашего проекта. С помощью инструментов этого приложения Вы получите на выходе API ссылки, которые Вы сможете подключить в Ваш frontend. Это demo-версия проекта.</p>
                             <a class="btn-solid-lg" href="#your-link">ИНСТРУКЦИЯ</a>
-                            <a class="btn-solid-lg"><router-link to="/drag-drop">НАЧАТЬ!</router-link></a>
+                            <a class="btn-solid-lg"><router-link to="/drag-drop" class="start-but">НАЧАТЬ!</router-link></a>
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->

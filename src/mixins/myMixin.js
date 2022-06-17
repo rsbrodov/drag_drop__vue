@@ -71,7 +71,7 @@ var mixin = {
                 },
                 {
                     type: 'datetime',
-                    size: 12
+                    size: ''
                 },
                 {
                     type: 'text',
