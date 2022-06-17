@@ -2,28 +2,51 @@
    <div>
       <div class="my-container mt-5">
          <div class="razdel">
-            <p class="mt-3 mb-3">Пример формы</p>
+            <p class="mt-3 mb-3 title">Пример формы</p>
             <div class="form">
                <div class="form-rows" v-for="(row, index) in $route.params.clonedItems" :key="index">
                   <div class="elements my-container" v-for="(element, index) in row" :key="index">
                      <div class="element_row" v-if="element.type == 'text' || element.type == 'file'">
-                        <label :for="element.uid"><b-icon :icon="element.uid"/><b> {{element.title}}:</b></label>
+                        <div class="label">
+                           <label
+                                   :for="element.uid"><b-icon
+                                   :icon="element.class"/>
+                              <b> {{element.title}}:</b>
+                           </label>
+                        </div>
                         <input autocomplete="off" :id="element.uid" class="form-control" :type="element.type">
                      </div>
-                     <div v-if="element.type == 'textarea'">
-                        <label :for="element.uid"><b-icon :icon="element.class"/><b> {{element.title}}:</b></label>
+                     <div class="element_row" v-if="element.type == 'textarea'">
+                        <div class="label">
+                           <label
+                                   :for="element.uid"><b-icon
+                                   :icon="element.class"/>
+                              <b> {{element.title}}:</b>
+                           </label>
+                        </div>
                         <textarea autocomplete="off" :id="element.uid" class="form-control" cols="7"/>
                      </div>
-                     <div v-if="element.type == 'select'">
-                        <label :for="element.uid"><b-icon :icon="element.class"/><b> {{element.title}}:</b></label>
+                     <div class="element_row" v-if="element.type == 'select'">
+                        <div class="label">
+                           <label
+                                   :for="element.uid"><b-icon
+                                   :icon="element.class"/>
+                              <b> {{element.title}}:</b>
+                           </label>
+                        </div>
                         <select :id="element.uid" class="form-control">
                            <option>Пункт 1</option>
                            <option>Пункт 2</option>
                            <option>Пункт 3</option>
                         </select>
                      </div>
-                     <div v-if="element.type == 'radio' || element.type == 'checkbox'">
-                        <label :for="element.uid"><b-icon :icon="element.class"/><b> {{element.title}}:</b></label><br>
+                     <div class="element_row" v-if="element.type == 'radio' || element.type == 'checkbox'">
+                        <div class="label">
+                           <label
+                                   :for="element.uid"><b-icon
+                                   :icon="element.class"/><b> {{element.title}}:</b>
+                           </label><br>
+                        </div>
                         <div class="checkbox-radio">
                            <div class="checkbox-radio-element">
                               <input :type="element.type" :id="element.uid" value=""> Пункт 1
@@ -36,17 +59,30 @@
                            </div>
                         </div>
                      </div>
+                     <div class="element_row" v-if="element.type == 'datetime'">
+                        <div class="label">
+                           <label
+                                   :for="element.uid"><b-icon
+                                   :icon="element.class"/><b> {{element.title}}:</b>
+                           </label>
+                        </div>
+                        <datepicker
+                            :id="element.uid"
+                            :language="ru"
+                            class="form-control">
+                        </datepicker>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
          <hr>
-         <div class="razdel mt-5">
-            <p class="mt-3 mb-3">Пример данных в бд</p>
+         <div class="razdel mt-5 container">
+            <p class="mt-3 mb-3 title">Пример данных в бд</p>
             <table class="table">
                <thead>
                <tr>
-                  <th scope="col">Поле</th>
+                  <th scope="col">Поле <small>(можно сделать транслитерацию от названия)</small></th>
                   <th scope="col">Тип данных</th>
                   <th scope="col">Размер</th>
                   <th scope="col">Null</th>
@@ -59,7 +95,7 @@
                      <td>int</td>
                      <td>11</td>
                      <td>Нет</td>
-                     <td></td>
+                     <td>-</td>
                   </tr>
                   <tr v-for="(element, index) in vv" :key="index">
                      <td>{{element.uid}}</td>
@@ -71,6 +107,19 @@
                </tbody>
                </table>
          </div>
+         <div class="razdel mt-5">
+            <p class="mt-3 mb-3 title">Список URL API</p>
+            <p class="list"><b class="font-italic">1. https://sync-convert/products/create</b> - создание записи в таблице, передать параметры методом (post)</p>
+            <p class="list"><b class="font-italic">2. https://sync-convert/products/index</b> - получение всего списка записей (get)</p>
+            <p class="list"><b class="font-italic">3. https://sync-convert/products/delete/{id}</b> - удаление записи, метод (delete)</p>
+            <p class="list"><b class="font-italic">4. https://sync-convert/products/update/{id}</b> - удаление записи, метод (put), передать параметры обновленной строки</p>
+
+         </div>
+         <div class="razdel mt-5">
+            <p class="mt-3 mb-3 title">*Внимание</p>
+            <p class="list"><b class="font-italic text-danger">Это демо-версия системы, продемонстрирована для изучения работы в ней. В боевой версии есть личный кабинет с историей созданных таблиц, по каждой из которых доступен набор API. Также есть возможность формирования справочников для выпадающих списков и формировать связные таблицы</b></p>
+
+         </div>
       </div>
    </div>
 </template>
@@ -78,9 +127,19 @@
 <script>
     import $ from "jquery";
     import mixin from "../../mixins/myMixin";
+    import Datepicker from 'vuejs-datepicker';
+    import {ru} from 'vuejs-datepicker/dist/locale'
     export default {
        name: "Maket",
        mixins: [mixin],
+       components: {
+          Datepicker
+       },
+       data () {
+          return {
+             ru: ru,
+          }
+       },
        computed:{
           vv(){
              var find = [];
@@ -94,7 +153,7 @@
        },
        filters: {
           status_null: function (status) {
-             if (status == 0) {
+             if (status === 0) {
                 return "Нет";
              }
              else {
@@ -102,6 +161,11 @@
              }
           },
 
+       },
+       created() {
+          if(this.vv.length === 0){
+             this.$router.push({ name: 'DragDrop' })
+          }
        }
     }
 </script>
@@ -121,10 +185,10 @@
 .elements{
    padding:15px 0
 }
-label{
+.label{
    text-align: left;
 }
-.razdel > p{
+.razdel > .title{
    font-size: 35px;
 }
    .checkbox-radio{
@@ -138,4 +202,10 @@ label{
    .checkbox-radio-element{
       margin: 0 25px;
    }
+   .list{
+      color:black;
+      text-align:left;
+   }
+.element_row{
+}
 </style>

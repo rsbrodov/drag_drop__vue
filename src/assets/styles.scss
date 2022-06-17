@@ -4,6 +4,17 @@
   margin:0 auto;
 }
 
+.start-but{
+  color:white;
+}
+.start-but:hover{
+  color:#ff556e;
+}
+.btn-solid-lg:hover{
+  background-color: white;
+  color:#ff556e!important;
+}
+
 body, p {
   color: #777;
   font: 400 1rem/1.75rem "Open Sans", sans-serif;
