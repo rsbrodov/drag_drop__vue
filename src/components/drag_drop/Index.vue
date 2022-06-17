@@ -27,7 +27,6 @@
                     <div class="left-block__draggable-layout" v-for="(mas, index) in clonedItems" :key="index"><!--Перебор строк-->
                         <b-icon class="btn-delete" @click="deleteRow(index)" icon="trash" />
                         <draggable class="left-block__draggable-layout__draggable-parent" v-model="clonedItems[index]" :options="clonedItemOptions">
-                            <p v-if="clonedItems[index].length === 0" class="text-center" style="color: white"><b-icon icon="columns" size="lg" /> Переместите объект с левой колонки сюда...</p>
                             <div class="clickable left-block__draggable-layout__draggable-parent__item" v-for="(item, indexing) in mas" :key="uuid(item)"  >
                                 <p class="pl-2 pt-3 text-secondary"><b-icon :icon="item.class"/> {{item.title}}</p>
                                 <div class="button-group">
