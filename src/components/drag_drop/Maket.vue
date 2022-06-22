@@ -1,6 +1,7 @@
 <template>
    <div>
       <div class="my-container mt-5">
+         <a class="btn-solid-lg mb-3" style="text-align: left!important;"><router-link to="/drag-drop" class="start-but">Вернуться обратно</router-link></a>
          <div class="razdel">
             <p class="mt-3 mb-3 title">Пример формы</p>
             <div class="form">
@@ -82,7 +83,7 @@
             <table class="table">
                <thead>
                <tr>
-                  <th scope="col">Поле <small>(можно сделать транслитерацию от названия)</small></th>
+                  <th scope="col">Поле</th>
                   <th scope="col">Тип данных</th>
                   <th scope="col">Размер</th>
                   <th scope="col">Null</th>
@@ -98,7 +99,7 @@
                      <td>-</td>
                   </tr>
                   <tr v-for="(element, index) in vv" :key="index">
-                     <td>{{element.uid}}</td>
+                     <td>{{element.title | element_slug}}</td>
                      <td>{{element.dictionary_id}}</td>
                      <td>{{element.dictionary_id | get_size}}</td>
                      <td>{{element.required | status_null}}</td>
@@ -129,6 +130,7 @@
     import mixin from "../../mixins/myMixin";
     import Datepicker from 'vuejs-datepicker';
     import {ru} from 'vuejs-datepicker/dist/locale'
+    import { url_slug } from 'cyrillic-slug'
     export default {
        name: "Maket",
        mixins: [mixin],
@@ -159,6 +161,9 @@
              else {
                 return "Да";
              }
+          },
+          element_slug: function (title) {
+             return url_slug(title);
           },
 
        },
