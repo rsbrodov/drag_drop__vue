@@ -1,6 +1,7 @@
 <template>
    <div>
       <div class="my-container mt-5">
+         <a class="btn-solid-lg mb-3" style="text-align: left!important;"><router-link to="/drag-drop" class="start-but">Вернуться обратно</router-link></a>
          <div class="razdel">
             <p class="mt-3 mb-3 title">Пример формы</p>
             <div class="form">

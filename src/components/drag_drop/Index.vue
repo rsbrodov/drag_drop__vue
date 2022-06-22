@@ -45,6 +45,9 @@
                         <div class="p-2 add-row-button"><button class="btn btn-outline-primary form-control text-left" @click="goNext()">
                             <b-icon icon="save"/>Сохранить и перейти к макету</button>
                         </div>
+                        <div class="p-2 add-row-button"><button class="btn btn-outline-danger form-control text-left" @click="cleanPlace()">
+                            <b-icon icon="trash"/>Удалить данные</button>
+                        </div>
                         <draggable
                             v-model="availableItems"
                             :options="availableItemOptions"
@@ -61,6 +64,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -191,10 +195,22 @@
                         time: 3000,
                     });
                 }else{
+                    localStorage.setItem('clonedItems', JSON.stringify(this.clonedItems));
                     this.$router.push({name: 'Maket', params: { clonedItems: this.clonedItems}});
                 }
+            },
+            cleanPlace(){
+                localStorage.removeItem('clonedItems');
+                this.clonedItems =[[]];
             }
         },
+        mounted() {
+            if (localStorage.getItem('clonedItems')){
+                this.clonedItems = JSON.parse(localStorage.getItem('clonedItems'))
+            }else{
+                this.clonedItems =[[]];
+            }
+        }
     }
 </script>
 
